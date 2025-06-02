@@ -1,0 +1,49 @@
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Environment variables
+.env
+.env.*.local
+
+# Logs
+logs
+*.log
+logs/**/*.log
+
+# OS-specific
+.DS_Store
+Thumbs.db
+
+# Build & dist
+dist/
+build/
+.out/
+
+# IDEs and editors
+.vscode/
+.idea/
+*.swp
+
+# Serverless
+.serverless/
+.aws-sam/
+
+# Coverage
+coverage/
+
+# PM2 logs
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Optional: If using TypeScript
+*.tsbuildinfo
+
+# Optional: If using Prisma
+prisma/dev.db
+prisma/migrations/

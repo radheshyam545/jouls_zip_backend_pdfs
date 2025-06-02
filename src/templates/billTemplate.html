@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bill</title>
+  <link rel="stylesheet" href="billStyles.css" />
+</head>
+
+<body>
+  <div class="container">
+    <div class="a4-sheet">
+      <div class="header-bar">
+        <div class="header-left"></div>
+        <!-- <div class="header-right">
+          <div class="inner-box">
+            <div class="triangle"></div>
+          </div>
+        </div> -->
+      </div>
+      <h1 class="head">JOULS ECOTECH PRIVATE LIMITED</h1>
+      <div class="info-text">
+        <div class="info-line">
+          <span class="bold">Reg. Office:</span> Floor no. 177, Second Floor, Block-C, South City II,
+        </div>
+        <div class="info-line">
+          Sector 49, Gurugram, Haryana, IN (122018)
+        </div>
+        <div class="info-line">
+          <span class="bold">CIN:</span> U31900HR2022PTC106081
+        </div>
+        <div class="info-line">
+          <span class="bold">MSME Udyam Reg. No.:</span> UDYAM-HR-05-0056075
+        </div>
+        <div class="info-line">
+          <span class="bold">Email:</span> amangoyal6377@gmail.com
+          <span class="bold ml">Mob.No:</span> +91-6377650430
+        </div>
+        <div class="info-line">
+          <span class="bold">Website:</span>
+          <a href="http://www.jouls.co.in" class="link">www.jouls.co.in</a>
+        </div>
+      </div>
+
+      <hr class="divider" />
+
+      <div class="bill-title">BILL</div>
+
+      <div class="bill-info">
+        <div><span class="">Bill No.</span>- {{billNo}}</div>
+        <div>
+          <span>Date:</span> <span class="underline-text">{{date}}</span>
+        </div>
+      </div>
+
+      <div class="issued-to">
+        <h2>Issued To:</h2>
+        <p>Name:- {{name}}</p>
+        <p>Address:- {{address}}</p>
+        <div class="tax-info">
+          <p>PAN – {{pan}}</p>
+          <p>GST (If Any) – {{gst}}</p>
+        </div>
+      </div>
+
+
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>S.No.</th>
+              <th>Particulars</th>
+              <th class="text-right">Amount</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>
+                {{particulars}}
+                <br />
+                <span class="small-text">(Txn. No. {{txnNo}})</span>
+              </td>
+              <td class="text-right">Rs. {{baseAmount}}</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="table-footer">
+          <div class="footer-col left">
+            <span class="bold">Total:</span>
+          </div>
+          <div class="footer-col right">
+            <span>Rs. {{baseAmount}}</span>
+          </div>
+        </div>
+
+
+        <div class="amount-summary">
+          <div class="row">
+            <span class="bold">SGST (9%):</span>
+            <span>Rs. {{sgst}}</span>
+          </div>
+          <div class="row">
+            <span class="bold">IGST (9%):</span>
+            <span>Rs. {{igst}}</span>
+          </div>
+          <!-- <hr /> -->
+          <div class="row total-row">
+            <span>Total:</span>
+            <span>Rs. {{totalAmount}}</span>
+          </div>
+          <!-- <hr /> -->
+        </div>
+      </div>
+
+      <div class="footer-signature">
+        <p class="amount-in-words">{{amountInWords}}</p>
+        <p class="sign-text">For Jouls Ecotech Pvt. Ltd.</p>
+        <div class="signature-line">
+          <p>Authorised Signatory</p>
+        </div>
+      </div>
+
+      <div class="contact-info">
+        <div class="left-info">
+          <div>U31900HR2022PTC106081</div>
+          <div class="address">
+            Jouls Ecotech Pvt. Ltd., Flat no.177, Second Floor, Block-C, South City-II, Gurugram, Haryana, India,122018
+          </div>
+        </div>
+        <div class="right-info">
+          <div class="contact-line">
+            +91-6377650430
+            <img class="icon" src="./assets/call.jpg" alt="call" />
+          </div>
+          <div class="contact-line">
+            www.jouls.energy
+            <img class="icon" src="./assets/web.jpg" alt="web" />
+          </div>
+          <div class="contact-line">
+            amangoyal6377@gmail.com
+            <img class="icon" src="./assets/mail.png" alt="mail" />
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-decoration top-decoration">
+        <!-- <div class="green-box">
+          <div class="inner-green-box">
+            <div class="small-triangle"></div>
+          </div>
+        </div> -->
+      </div>
+
+    </div>
+  </div>
+</body>
+</html>
