@@ -211,13 +211,16 @@ function convertToWords(num) {
 // Function to generate HTML content by reading billTemplate.html and replacing placeholders
 export const generateBillHTML = (tx, index) => {
   // Calculate bill details
-  const billNo = `Bill No. - ${index + 1}`;
-  const billDate = moment().format('DD-MM-YYYY');
+  const billNo = `${index + 1}`;
+  // const billDate = moment().format('DD-MM-YYYY');
+  // const billDate = tx.date ? moment(tx.date).format('DD-MM-YYYY') : moment().format('DD-MM-YYYY');
+  const billDate = tx.date ;
   const amount = parseFloat(tx.rechargeamount || 0);
   const sgst = +(amount * 0.09).toFixed(2);
   const igst = +(amount * 0.09).toFixed(2);
   const total = +(amount + sgst + igst).toFixed(2);
-  const amountInWords = convertToWords(total);
+  // const amountInWords = convertToWords(total);
+  const amountInWords = convertToWords(amount);
   // Read the HTML template from templates/billTemplate.html
   let htmlContent = fs.readFileSync(path.join(__dirname, "..", 'templates', 'billTemplate.html'), 'utf8');
   // Read the CSS file from src/templates/billStyles.css

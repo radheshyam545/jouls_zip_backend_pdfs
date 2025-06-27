@@ -1,6 +1,7 @@
 import { getDB } from '../config/db.js';
 import { piscina } from '../pool/piscina.js';
 import { generateBillPDF, generateBillPDFWithTemplate, generatePDFForDateGroup, generatePDFForTransaction } from '../utils/pdfGenerator.js';
+import { phonePeAttemptReferenceIds } from '../utils/ref_ids.js';
 import { generateZipWithDateFolders, generateZipWithMultiplePDFs } from '../utils/zipGenerator.js';
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -164,8 +165,20 @@ export const downloadDateGroupedTransactionsZipWithFolders = async (req, res) =>
 export const downloadDateGroupedTransactionsZipWithFoldersBill = async (req, res) => {
   try {
     const db = getDB();
-    // const transactions = await db.collection('apptransactiondetails').find({}).limit(150).toArray();
-    const transactions = await db.collection('apptransactiondetails').find({}).toArray();
+    // const transactions = await db.collection('apptransactiondetails').find({}).limit(100).toArray();
+    // const transactions = await db.collection('apptransactiondetails').find({}).toArray();
+
+    const limit = 100; // jitne documents chahiyein utni limit yahan set karein
+
+    const transactions = await db
+      .collection('apptransactiondetails')
+      .find({ transactionId: { $in: phonePeAttemptReferenceIds } })
+      // .limit(limit)
+      .toArray();
+
+      console.log(transactions.length,"transactions.length",phonePeAttemptReferenceIds.length)
+      // return
+
 
     if (!transactions.length) {
       return res.status(404).json({ success: false, message: 'No transactions found' });
@@ -237,13 +250,13 @@ export const downloadDateGroupedTransactionsZipWithFoldersBill = async (req, res
 
     // const pdfsWithFolders = await Promise.all(workerTasks);
 
-     const pdfPromises = Object.entries(groupedByDate).map(([date, txList]) =>
+    const pdfPromises = Object.entries(groupedByDate).map(([date, txList]) =>
       piscina.run({ date, txList })
     );
     //  const pdfsWithFolders = await Promise.all(pdfPromises);
-      const allResults = await Promise.allSettled(pdfPromises);
+    const allResults = await Promise.allSettled(pdfPromises);
 
-       const pdfsWithFolders = allResults
+    const pdfsWithFolders = allResults
       .filter(result => result.status === 'fulfilled' && result.value.success)
       .map(result => result.value);
 
